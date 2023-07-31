@@ -1,9 +1,23 @@
 public class Solution {
     public bool IsValid(string s) {
-        while(s.Contains("()") || s.Contains("{}") || s.Contains("[]"))
+        Stack<Char> stack = new Stack<Char>();
+        var charArray = s.ToCharArray();
+
+        for(int i = 0; i < charArray.Length ; i++)
         {
-            s = s.Replace("()","").Replace("{}","").Replace("[]","");
+            if(charArray[i] == '(' || charArray[i] == '[' || charArray[i] == '{'){
+              stack.Push(charArray[i]); 
+              continue; 
+            }else if(stack.Count == 0)
+            return false;
+            Char top = stack.Pop();
+            if(top == '(' && charArray[i] != ')')
+            return false;
+            if(top == '[' && charArray[i] != ']')
+            return false;
+            if(top == '{' && charArray[i] != '}')
+            return false;
         }
-        return s.Length == 0;
+        return stack.Count == 0;
     }
 }
