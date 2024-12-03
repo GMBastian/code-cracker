@@ -17,7 +17,7 @@ public class Solution {
             return false;
             if(top == '{' && charArray[i] != '}')
             return false;
-        }
+        } 
         return stack.Count == 0;
     }
 }
